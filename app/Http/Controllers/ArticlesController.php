@@ -10,22 +10,31 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        //
+        $articles = Article::latest()->get();
+
+        return view('articles.index', compact('articles'));
     }
 
     public function create()
     {
-        //
+        return view('articles.create');
+
     }
 
     public function store(Request $request)
     {
-        //
+       $this->validate($request, [
+           'title' => 'required|string|min:5|max:2000',
+           'text' => 'required|string|min:15|max:2000'
+       ]);
+       Article::create($request->only(['title','text']));
+       return redirect('/articles');
     }
 
     public function show(Article $article)
     {
-        //
+        $comments = $article->comments;
+        return view('articles.show', compact('article', 'comments'));
     }
 
     public function edit(Article $article)
