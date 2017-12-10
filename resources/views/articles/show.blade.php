@@ -7,7 +7,7 @@
             <h3>{{ $article->title }}</h3>
             <p>{{ $article->text }}</p>
         </div>
-
+        <a href="{{ url("articles/{$article->id}/edit") }}" class="btn btn-default">Edit</a>
         <ul class="list-group">
             @foreach($comments as $comment)
                 <li class="list-group-item">

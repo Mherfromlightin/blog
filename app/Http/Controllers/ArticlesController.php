@@ -39,12 +39,21 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit',compact('article'));
     }
 
     public function update(Request $request, Article $article)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|string|min:5|max:2000',
+            'text' => 'required|string|min:15|max:2000'
+        ]);
+        $article->update([
+            'title' => $request->title,
+            'text' => $request->text,
+
+        ]);
+        return redirect('/articles');
     }
 
     public function destroy(Article $article)
