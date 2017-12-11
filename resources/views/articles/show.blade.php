@@ -8,6 +8,11 @@
             <p>{{ $article->text }}</p>
         </div>
         <a href="{{ url("articles/{$article->id}/edit") }}" class="btn btn-default">Edit</a>
+        <form action="{{ url("articles/" . $article->id) }}" method="post">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <button type="submit">Delete</button>
+        </form>
         <ul class="list-group">
             @foreach($comments as $comment)
                 <li class="list-group-item">
