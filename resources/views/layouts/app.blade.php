@@ -7,10 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/articles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
 </head>
+</body>
 <body>
 @include('layouts.partials.nav')
 <div class="container">
@@ -23,8 +26,14 @@
             @yield('content')
         </div>
         @include('layouts.partials.sidebar')
+
     </div>
 </div>
 @include('layouts.partials.footer')
-</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+@yield('scripts')
 </html>

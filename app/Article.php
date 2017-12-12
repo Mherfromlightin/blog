@@ -16,6 +16,11 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
     public function addComment($body)
     {
         return $this->comments()->create(compact('body'));
