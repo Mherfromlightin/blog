@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="col-sm-8 blog-main">
+        <h1> Articles of {{ $category->name }}</h1>
+
         @foreach($articles as $article)
             <div class="blog-post">
                 <h2 class="blog-post-title">
@@ -9,9 +11,6 @@
                 </h2>
                 <p class="blog-post-meta">
                 <p>{{ $article->text }}</p>
-                @foreach($article->categories as $category)
-                    <a href="{{ url('/categories/category') }}">{{ $category->name }}</a>
-                @endforeach
             </div>
         @endforeach
     </div>

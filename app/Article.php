@@ -8,7 +8,8 @@ class Article extends Model
 {
     protected $fillable = [
         'text',
-        'title'
+        'title',
+        'user_id'
     ];
 
     public function comments()
@@ -21,8 +22,13 @@ class Article extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function addComment($body)
+    public function addComment($data)
     {
-        return $this->comments()->create(compact('body'));
+        return $this->comments()->create($data);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

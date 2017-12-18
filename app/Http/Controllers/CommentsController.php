@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -13,7 +14,10 @@ class CommentsController extends Controller
             'body' => 'required|string|min:1|max:10000'
         ]);
 
-        $article->addComment($request->body);
+        $article->addComment([
+            'body' => $request->body,
+            'user_id' => auth()->id()
+        ]);
 
         return back();
     }

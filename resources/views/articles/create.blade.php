@@ -18,21 +18,21 @@
 
             <select class="categories-multiple" name="categories[]" multiple="multiple">
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" style="width: 600px" {{ in_array($category->id, $currentCategoryIds) ? "selected" : "" }}>{{ $category->name }}</option>
                 @endforeach
             </select>
 
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default">Save Article</button>
         </form>
 
-       @include('layouts.partials.errors')
+        @include('layouts.partials.errors')
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script>
         $(document).ready(function () {
             $('.categories-multiple').select2();
         })
     </script>
-@endsection()
+@endpush()
