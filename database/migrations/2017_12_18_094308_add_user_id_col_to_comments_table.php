@@ -30,5 +30,3 @@ class AddUserIdColToCommentsTable extends Migration
         });
     }
 }
-
-

@@ -31,7 +31,6 @@
         @if(auth()->check())
             @include('layouts.partials.sidebar')
         @endif
-
     </div>
 
 </div>

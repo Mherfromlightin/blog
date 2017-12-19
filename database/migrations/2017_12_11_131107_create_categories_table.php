@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCategoriesTable extends Migration
 {
-
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {

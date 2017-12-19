@@ -30,5 +30,3 @@ class AddUserIdColToCategoriesTable extends Migration
         });
     }
 }
-
-

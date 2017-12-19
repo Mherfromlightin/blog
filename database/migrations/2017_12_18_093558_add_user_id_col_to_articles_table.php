@@ -30,5 +30,3 @@ class AddUserIdColToArticlesTable extends Migration
         });
     }
 }
-
-

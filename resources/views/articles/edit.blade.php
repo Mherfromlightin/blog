@@ -20,7 +20,10 @@
 
             <select class="categories-multiple" name="categories[]" multiple="multiple">
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}" style="width: 600px" {{ in_array($category->id, $currentCategoryIds) ? "selected" : "" }}>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}"
+                            style="width: 600px" {{ in_array($category->id, $currentCategoryIds) ? "selected" : "" }}>
+                        {{ $category->name }}
+                    </option>
                 @endforeach
             </select>
 

@@ -25,7 +25,6 @@ class ArticlesController extends Controller
     public function create(Article $article)
     {
         $categories = Category::all();
-
         $currentCategoryIds = $article->categories()->pluck('categories.id')->toArray();
 
         return view('articles.create', compact('categories', 'currentCategoryIds', 'article'));
@@ -41,7 +40,7 @@ class ArticlesController extends Controller
         $article = Article::create([
             'title' => $request->title,
             'text' => $request->text,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->id()
         ]);
 
         $article->categories()->attach($request->categories);
@@ -60,6 +59,7 @@ class ArticlesController extends Controller
     {
         $categories = Category::all();
         $currentCategoryIds = $article->categories()->pluck('categories.id')->toArray();
+
         return view('articles.edit', compact('article', 'categories', 'currentCategoryIds'));
     }
 
@@ -73,10 +73,10 @@ class ArticlesController extends Controller
         $article->update([
             'title' => $request->title,
             'text' => $request->text,
+            'user_id' => auth()->id(),
         ]);
 
         $article->categories()->sync($request->categories);
-
 
         return redirect('/articles');
     }

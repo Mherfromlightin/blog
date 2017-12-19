@@ -51,6 +51,7 @@ class CategoriesController extends Controller
 
         $category->update([
             'name' => $request->name,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect('/categories');
