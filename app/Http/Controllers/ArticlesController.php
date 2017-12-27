@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -17,7 +18,7 @@ class ArticlesController extends Controller
 
     public function categoryIndex(Category $category)
     {
-        $articles = $category->articles;
+       $articles = $category->articles;
 
         return view('articles.category_index', compact('articles', 'category'));
     }
@@ -37,11 +38,14 @@ class ArticlesController extends Controller
             'text' => 'required|string|min:15|max:2000'
         ]);
 
-        $article = Article::create([
-            'title' => $request->title,
-            'text' => $request->text,
-            'user_id' => auth()->id()
-        ]);
+        $data =
+            [
+                'title' => $request->title,
+                'text' => $request->text,
+                'user_id' => auth()->id()
+            ];
+//        $article = Article::create();
+       $article = User::publishArticle($data);
 
         $article->categories()->attach($request->categories);
 
@@ -81,10 +85,10 @@ class ArticlesController extends Controller
         return redirect('/articles');
     }
 
-    public function destroy(Article $article,Request $request )
+    public function destroy(Article $article, Request $request)
     {
         $article->delete();
 
-       return redirect('/articles');
+        return redirect('/articles');
     }
 }

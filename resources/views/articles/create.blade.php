@@ -13,10 +13,10 @@
 
             <div class="form-group">
                 <label for="text">Text:</label>
-                <textarea class="form-control" id="text" name="text"></textarea>
+                <textarea class="form-control" id="text" name="text" ></textarea>
             </div>
 
-            <select class="categories-multiple" name="categories[]" multiple="multiple">
+            <select class="categories-multiple" name="categories[]" id="categories" multiple="multiple">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}"
                             style="width: 600px" {{ in_array($category->id, $currentCategoryIds) ? "selected" : "" }}>
@@ -25,7 +25,7 @@
                 @endforeach
             </select>
 
-            <button type="submit" class="btn btn-default">Save Article</button>
+            <button type="submit" id="createbtn" class="btn btn-default">Save Article</button>
         </form>
 
         @include('layouts.partials.errors')
@@ -33,9 +33,14 @@
 @endsection
 
 @push('scripts')
+
+<script src="/js/ajaxCreate.js"></script>
+
+
 <script>
     $(document).ready(function () {
         $('.categories-multiple').select2();
     })
+
 </script>
 @endpush()
