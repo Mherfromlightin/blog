@@ -18,7 +18,7 @@
                 <textarea class="form-control" id="text" name="text">{{ $article->text }}</textarea>
             </div>
 
-            <select class="categories-multiple" name="categories[]" multiple="multiple">
+            <select class="categories-multiple" name="categories[]" id="categories" multiple="multiple">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}"
                             style="width: 600px" {{ in_array($category->id, $currentCategoryIds) ? "selected" : "" }}>
@@ -27,12 +27,13 @@
                 @endforeach
             </select>
 
-            <button type="submit" class="btn btn-default">Update</button>
+            <button type="submit" id="update_article" class="btn btn-default" data-id="{{ $article->id }}">Update</button>
         </form>
     </div>
 @endsection
 
 @push('scripts')
+<script src="/js/modules/article.js"></script>
 <script>
     $(document).ready(function () {
         $('.categories-multiple').select2();

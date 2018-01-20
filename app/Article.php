@@ -31,4 +31,9 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function comaSeperatedCategories()
+    {
+        return $this->categories();
+    }
 }

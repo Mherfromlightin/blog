@@ -19,7 +19,7 @@ class CategoriesController extends Controller
         return view('categories.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
         $this->validate($request, [
             'name' => 'required|string|min:5|max:2000',
@@ -30,7 +30,12 @@ class CategoriesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return redirect('/categories');
+        return response()->json([
+            'data' => [
+                'category_id' => $category->id,
+            ],
+            'message' => 'Category save successfully!'
+        ], 200);
     }
 
     public function show(Category $category)
@@ -54,13 +59,23 @@ class CategoriesController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect('/categories');
+        return response()->json([
+            'data' => [
+                'category_id' => $category->id,
+            ],
+            'message' => 'Category updated successfully!'
+        ], 200);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect('/categories');
+        return response()->json([
+            'data' => [
+                'category_id' => $category->id,
+            ],
+            'message' => 'Category delete successfully!'
+        ], 200);
     }
 }

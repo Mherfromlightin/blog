@@ -1,0 +1,32 @@
+#prev {
+    width: 25px;
+    height: 40px;
+    position: relative;
+}
+#next {
+    width: 25px;
+    height: 40px;
+    position: relative;
+}
+.slider {
+    margin: 0 auto;
+    position: relative;
+    width: 400px;
+    height: 200px;
+    overflow: hidden;
+}
+.imgPrev {
+    left: -100%;
+}
+.imgActive {
+    left: 0
+}
+.imgNext {
+    left: 100%;
+}
+.slide {
+    transition: 1.5s;
+    background-size: 100%;
+    right: 100%;
+    position: absolute;
+}

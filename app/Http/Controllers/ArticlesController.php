@@ -15,10 +15,14 @@ class ArticlesController extends Controller
 
         return view('articles.index', compact('articles'));
     }
+    public function articlesTable(){
+        $articles = Article::latest()->get();
+        return view('scripts.articlesTable', compact('articles'));
+    }
 
     public function categoryIndex(Category $category)
     {
-       $articles = $category->articles;
+        $articles = $category->articles;
 
         return view('articles.category_index', compact('articles', 'category'));
     }
@@ -38,18 +42,22 @@ class ArticlesController extends Controller
             'text' => 'required|string|min:15|max:2000'
         ]);
 
-        $data =
-            [
-                'title' => $request->title,
-                'text' => $request->text,
-                'user_id' => auth()->id()
-            ];
-//        $article = Article::create();
-       $article = User::publishArticle($data);
+        $data = [
+            'title' => $request->title,
+            'text' => $request->text,
+            'user_id' => auth()->id()
+        ];
+
+        $article = User::publishArticle($data);
 
         $article->categories()->attach($request->categories);
 
-        return redirect('/articles');
+        return response()->json([
+            'data' => [
+                'article_id' => $article->id,
+            ],
+            'message' => 'Article save successfully!'
+        ], 200);
     }
 
     public function show(Article $article, Category $category)
@@ -82,13 +90,23 @@ class ArticlesController extends Controller
 
         $article->categories()->sync($request->categories);
 
-        return redirect('/articles');
+        return response()->json([
+            'data' => [
+                'article_id' => $article->id,
+            ],
+            'message' => 'Article updated successfully!'
+        ], 200);
     }
 
     public function destroy(Article $article, Request $request)
     {
         $article->delete();
 
-        return redirect('/articles');
+        return response()->json([
+            'data' => [
+                'article_id' => $article->id,
+            ],
+            'message' => 'Article updated successfully!'
+        ], 200);
     }
 }

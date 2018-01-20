@@ -13,6 +13,11 @@ Route::post('logout', 'AuthController@logout')->name('logout');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/scripts', 'ScriptsController@index');
+    Route::get('/scripts/dataTable', 'ScriptsController@dataTable');
+    Route::get('/scripts/articlesTable', 'ArticlesController@articlesTable');
+    Route::get('/scripts/map', 'ScriptsController@map');
+
     Route::get('/articles', 'ArticlesController@index');
     Route::get('/articles/create', 'ArticlesController@create');
     Route::post('/articles', 'ArticlesController@store');
@@ -31,4 +36,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/categories/{category}', 'CategoriesController@destroy');
 
     Route::post('/articles/{article}/comments', 'CommentsController@store');
-});
+
+     });

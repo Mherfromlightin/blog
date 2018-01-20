@@ -10,11 +10,15 @@
 
             <div class="form-group">
                 <label for="category">New Category:</label>
-                <input type="text" class="form-control" value="" id="category" name="name">
+                <input type="text" class="form-control" id="category" name="name" value="{{ $category->name }}">
             </div>
 
-            <button type="submit" class="btn btn-default">Update</button>
+            <button type="submit" id="update_category" class="btn btn-default" data-id="{{ $category->id }}">Update
+            </button>
 
         </form>
     </div>
 @endsection
+@push('scripts')
+<script src="/js/modules/category.js"></script>
+@endpush

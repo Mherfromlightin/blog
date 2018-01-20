@@ -25,7 +25,7 @@
                 @endforeach
             </select>
 
-            <button type="submit" id="createbtn" class="btn btn-default">Save Article</button>
+            <button type="submit" id="create_article" class="btn btn-default">Save Article</button>
         </form>
 
         @include('layouts.partials.errors')
@@ -33,14 +33,10 @@
 @endsection
 
 @push('scripts')
-
-<script src="/js/ajaxCreate.js"></script>
-
-
+<script src="/js/modules/article.js"></script>
 <script>
     $(document).ready(function () {
         $('.categories-multiple').select2();
     })
-
 </script>
 @endpush()

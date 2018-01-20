@@ -15,4 +15,7 @@
             </div>
         @endforeach
     </div>
+    @if(auth()->check())
+        @include('layouts.partials.sidebar')
+    @endif
 @endsection

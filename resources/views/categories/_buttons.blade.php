@@ -3,5 +3,9 @@
 <form action="{{ url("categories/" . $category->id) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
-    <button type="submit">Delete</button>
+    <button type="submit" id="delete_category" data-id="{{ $category->id }}">Delete</button>
 </form>
+
+@push('scripts')
+<script src="/js/modules/category.js"></script>
+@endpush

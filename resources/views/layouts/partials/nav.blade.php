@@ -5,6 +5,10 @@
             <a class="blog-nav-item" href="{{ url('articles/create') }}">New article</a>
             <a class="blog-nav-item" href="{{ url('categories') }}">Categories</a>
             <a class="blog-nav-item" href="{{ url('categories/create') }}">New Category</a>
+            <a class="blog-nav-item" href="{{ url('scripts') }}">Scripts</a>
+            <a class="blog-nav-item" href="{{ url('scripts/dataTable') }}">DataTable</a>
+            <a class="blog-nav-item" href="{{ url('scripts/articlesTable') }}">ArticlesTable</a>
+            <a class="blog-nav-item" href="{{ url('scripts/map') }}">Google Map</a>
             @if(auth()->check())
                 <form action="{{ url('logout') }}" method="POST" style="display: inline-block" class="navbar-right">
                     {{ csrf_field() }}
