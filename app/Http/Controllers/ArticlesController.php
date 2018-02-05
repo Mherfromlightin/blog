@@ -15,8 +15,11 @@ class ArticlesController extends Controller
 
         return view('articles.index', compact('articles'));
     }
-    public function articlesTable(){
+
+    public function articlesTable()
+    {
         $articles = Article::latest()->get();
+
         return view('scripts.articlesTable', compact('articles'));
     }
 

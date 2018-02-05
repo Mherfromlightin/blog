@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mher
- * Date: 11.01.2018
- * Time: 14:14
- */
 
 namespace App\Http\Controllers;
-
 
 class ScriptsController
 {
@@ -15,15 +8,18 @@ class ScriptsController
     {
         return view('scripts.slide', compact('scripts'));
     }
+
     public function dataTable()
     {
         return view('scripts.dataTable');
 
     }
+
     public function articlesTable()
     {
         return view('scripts.articlesTable');
     }
+
     public function map()
     {
         return view('scripts.map');

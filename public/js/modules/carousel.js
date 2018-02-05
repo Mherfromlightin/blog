@@ -2,7 +2,7 @@ $(function () {
     var arrayImages = [
         '/images/1.jpg',
         '/images/2.jpg',
-        '/images/3.jpg',
+        '/images/3.jpg'
     ];
     var i = 0;
     var prev = arrayImages[2];
@@ -61,5 +61,4 @@ $(function () {
     $('#prev').click(function () {
         left();
     });
-
 });

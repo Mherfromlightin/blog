@@ -3,7 +3,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var data = {
-            'name': $('#category').val(),
+            'name': $('#category').val()
         };
 
         $.ajax({
@@ -23,7 +23,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var data = {
-            'name': $('#category').val(),
+            'name': $('#category').val()
         };
 
         $.ajax({
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 window.location.href = '/categories';
             }
         })
-    })
+    });
 
     function setCookie(name, value, options) {
         options = options || {};
@@ -99,5 +99,4 @@ $(document).ready(function () {
     $('#btn_b').click(function () {
         setCookie("name", "B")
     })
-
 });

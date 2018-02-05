@@ -495,7 +495,7 @@
 @endpush
 
 @push('scripts')
-<script src="/js/modules/jquery.dataTables.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable({

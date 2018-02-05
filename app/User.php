@@ -31,7 +31,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
-    public static function publishArticle($data)
+
+    public static function publishArticle(array $data)
     {
        return Article::create($data);
     }

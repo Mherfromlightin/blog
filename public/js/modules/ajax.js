@@ -16,7 +16,7 @@ $(document).ready(function () {
                 length: 12
             },
             select: {
-                required: true,
+                required: true
             },
             data: {
                 required: true
@@ -41,7 +41,7 @@ $(document).ready(function () {
             code: {
                 required: "Please provide a code",
                 length: "Your password must be at least 3 characters long"
-            },
+            }
         },
         submitHandler: function (form) {
         }

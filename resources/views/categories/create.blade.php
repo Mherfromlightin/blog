@@ -356,7 +356,6 @@
 @endsection
 
 @push('scripts')
-<script src="jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="/css/carousel.css">
 <script src="/js/modules/category.js"></script>
