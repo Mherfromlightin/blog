@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Repositories\ArticleRepository;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
-    public function index()
+    public function index(Request $request, ArticleRepository $articleRepository)
     {
-        $articles = Article::latest()->get();
+        $articles = $articleRepository->getArchived($request->only(['month','year']));
 
         return view('articles.index', compact('articles'));
+    }
+
+    public function sqlIndex()
+    {
+        $users = DB::table('users')
+            ->join('articles', 'users.id', '=', 'articles.user_id')
+            ->join('categories', 'users.id', '=', 'categories.user_id')
+            ->select('users.*', 'articles.title', 'categories.name')
+            ->where()
+            ->get();
+
+        return view('sqlTest.sql', compact('users'));
     }
 
     public function articlesTable()

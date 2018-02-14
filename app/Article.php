@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -11,6 +12,17 @@ class Article extends Model
         'title',
         'user_id'
     ];
+
+    public function scopeFilters($query, $filters)
+    {
+        if (isset($filters['year'])) {
+            $query->whereYear('created_at', $filters['year']);
+        }
+
+        if (isset($filters['month'])) {
+            $query->whereMonth('created_at', Carbon::parse($filters['month'])->month);
+        }
+    }
 
     public function comments()
     {

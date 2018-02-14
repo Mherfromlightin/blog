@@ -37,4 +37,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/articles/{article}/comments', 'CommentsController@store');
 
+    Route::get('/sql', 'ArticlesController@sqlIndex');
+
      });
