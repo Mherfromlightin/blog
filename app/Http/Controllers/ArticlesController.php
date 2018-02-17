@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Mail\welcome;
+use App\Mail\Welcomeagain;
 use App\Repositories\ArticleRepository;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ArticlesController extends Controller
 {
     public function index(Request $request, ArticleRepository $articleRepository)
     {
         $articles = $articleRepository->getArchived($request->only(['month','year']));
+
+        Mail::to(User::first())->send(new Welcomeagain());
+
 
         return view('articles.index', compact('articles'));
     }

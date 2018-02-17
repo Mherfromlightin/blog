@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\welcome;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -43,6 +45,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        Mail::to($user)->send(new welcome($user));
 
         auth()->login($user);
 
