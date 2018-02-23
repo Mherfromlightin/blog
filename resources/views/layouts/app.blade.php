@@ -15,6 +15,12 @@
 <body>
 @include('layouts.partials.nav')
 
+@if(session('message'))
+    <div class="alert  alert-info" id="flash-message">
+        {{ session('message') }}
+    </div>
+@endif
+
 @if(auth()->check())
     <div class="blog-header">
         <h1 class="blog-title">The Bootstrap Blog</h1>

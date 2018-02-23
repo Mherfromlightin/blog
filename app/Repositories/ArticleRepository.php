@@ -6,8 +6,11 @@ use App\Article;
 
 class ArticleRepository
 {
-    public function getArchived($filters)
+    protected $model;
+
+    public function getArchived($filters, $with = [])
     {
-        return  Article::latest()->filters($filters)->get();
+        return Article::with($with)->filters($filters)->latest()->get();
     }
+
 }

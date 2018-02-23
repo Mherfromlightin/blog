@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Http\Requests\ArticleRequest;
 use App\Mail\welcome;
 use App\Mail\Welcomeagain;
 use App\Repositories\ArticleRepository;
@@ -17,10 +18,10 @@ class ArticlesController extends Controller
 {
     public function index(Request $request, ArticleRepository $articleRepository)
     {
-        $articles = $articleRepository->getArchived($request->only(['month','year']));
+        $filters = $request->only(['month', 'year']);
+        $with = ['tags', 'categories', 'user', 'comments'];
 
-        Mail::to(User::first())->send(new Welcomeagain());
-
+        $articles = $articleRepository->getArchived($filters, $with);
 
         return view('articles.index', compact('articles'));
     }
@@ -59,13 +60,8 @@ class ArticlesController extends Controller
         return view('articles.create', compact('categories', 'currentCategoryIds', 'article'));
     }
 
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $this->validate($request, [
-            'title' => 'required|string|min:5|max:2000',
-            'text' => 'required|string|min:15|max:2000'
-        ]);
-
         $data = [
             'title' => $request->title,
             'text' => $request->text,
@@ -75,6 +71,8 @@ class ArticlesController extends Controller
         $article = User::publishArticle($data);
 
         $article->categories()->attach($request->categories);
+
+        session()->flash('message', 'You have new article');
 
         return response()->json([
             'data' => [
@@ -99,13 +97,8 @@ class ArticlesController extends Controller
         return view('articles.edit', compact('article', 'categories', 'currentCategoryIds'));
     }
 
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
-        $this->validate($request, [
-            'title' => 'required|string|min:5|max:2000',
-            'text' => 'required|string|min:15|max:2000'
-        ]);
-
         $article->update([
             'title' => $request->title,
             'text' => $request->text,

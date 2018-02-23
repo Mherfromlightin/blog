@@ -24,6 +24,16 @@ class Article extends Model
         }
     }
 
+    public function addComment($data)
+    {
+        return $this->comments()->create($data);
+    }
+
+    public function comaSeparatedCategories()
+    {
+        return $this->categories();
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -34,18 +44,13 @@ class Article extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function addComment($data)
-    {
-        return $this->comments()->create($data);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function comaSeparatedCategories()
+    public function tags()
     {
-        return $this->categories();
+        return $this->belongsToMany(Tag::class);
     }
 }

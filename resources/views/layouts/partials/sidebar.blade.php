@@ -15,6 +15,16 @@
         </ol>
     </div>
     <div class="sidebar-module">
+        <h4>Tags</h4>
+        <ol class="list-success">
+            @foreach($tags as $tag)
+                <li>
+                    <a href="{{ url('/articles/tags/' . $tag) }}" >{{ $tag }}</a>
+                </li>
+            @endforeach
+        </ol>
+    </div>
+    <div class="sidebar-module">
         <h4>Elsewhere</h4>
         <ol class="list-unstyled">
             <li><a href="#">GitHub</a></li>
